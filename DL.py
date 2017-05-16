@@ -141,7 +141,7 @@ class DeepLearning:
 
 def setup(ver):
     x_train, y_train, x_test, y_test = DataSetup.read_ceps(ver)
-    print(DataSetup.read_ceps(ver))
+    #print(DataSetup.read_ceps(ver))
     # 分類器定義
     DL = DeepLearning(200, 10)
     # トレーニング
