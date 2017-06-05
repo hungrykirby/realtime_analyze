@@ -139,11 +139,11 @@ class DeepLearning:
         score=float(y_test.size - wrong_size)/y_test.size
         return score
 
-def setup(ver):
-    x_train, y_train, x_test, y_test = DataSetup.read_ceps(ver)
+def setup(file_type, ver):
+    x_train, y_train, x_test, y_test = DataSetup.read_ceps(file_type, ver)
     #print(DataSetup.read_ceps(ver))
     # 分類器定義
-    DL = DeepLearning(200, 10)
+    DL = DeepLearning(2000, 100)
     # トレーニング
     DL.fit(x_train, y_train)
 

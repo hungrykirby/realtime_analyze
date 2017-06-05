@@ -1,8 +1,8 @@
 import numpy as np
 import DataSetup
 
-def setup(ver):
-    train_x, train_y, test_x, test_y = DataSetup.read_ceps(ver)
+def setup(file_type, ver):
+    train_x, train_y, test_x, test_y = DataSetup.read_ceps(file_type, ver)
 
     fitted_data, num_labels = train(train_x, train_y)
     accuracy = test(fitted_data, test_x, test_y, num_labels)
@@ -38,3 +38,16 @@ def test(fitted_data, test_x, test_y, num_labels):
             accuracy += 1
 
     return accuracy/len(test_x)
+
+def stream(fitted_data, xyz):
+    dist = []
+    aves = np.array([0, 0, 0, 0]).astype(np.int64)
+    for f in fitted_data:
+        count = 0
+        for label, a in enumerate(xyz):
+            aves += a
+            count += 1
+        aves = aves/count
+        dist.append(np.linalg.norm(f - aves))
+    predict_label = np.argmin(dist)
+    print("predict_label", predict_label)

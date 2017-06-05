@@ -2,10 +2,14 @@ import os
 import glob
 import numpy as np
 
-def read_ceps(ver, base_dir = os.getcwd()):
+def read_ceps(file_type, ver, base_dir = os.getcwd()):
     train_x, train_y = [], []
     test_x, test_y = [], []
-    base_dir = base_dir.replace("realtime_analyze", "pyduino")
+    if file_type == "3":
+        file_type = ""
+    elif file_type == "4":
+        file_type = "_4"
+    base_dir = base_dir.replace("realtime_analyze", "pyduino" + file_type)
     train_x, train_y =  make_arr(base_dir, "train" + ver)
     test_x, test_y = make_arr(base_dir, "test" + ver)
     return train_x, train_y, test_x, test_y

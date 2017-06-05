@@ -9,8 +9,8 @@ import glob
 
 import DataSetup
 
-def setup(ver):
-    train_xyz, train_label, test_xyz, test_label = DataSetup.read_ceps(ver)
+def setup(file_type, ver):
+    train_xyz, train_label, test_xyz, test_label = DataSetup.read_ceps(file_type, ver)
     svc = SVC(kernel="linear",
         C=1000.0,
         degree=3,
@@ -39,4 +39,4 @@ def setup(ver):
 def stream(svc, xyz):
     predict = svc.predict(xyz)
     #predict = len(x)
-    print(predict[0])
+    print("predict", predict[0])
